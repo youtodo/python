@@ -1,27 +1,21 @@
 #!/usr/bin/env python3
-# Импортируем библиотеку, соответствующую типу нашей базы данных 
+
 import sqlite3
 from sqlite3 import Error
  
 db_file = "data.db"
-sql_create_projects_table = """ CREATE TABLE IF NOT EXISTS projects (
+sql_create_region_table = """ CREATE TABLE IF NOT EXISTS region (
                                     id integer PRIMARY KEY,
-                                    name text NOT NULL,
-                                    begin_date text,
-                                    end_date text
-                                ); """
+                                    name text NOT NULL
+                                );"""
  
-sql_create_tasks_table = """CREATE TABLE IF NOT EXISTS tasks (
+sql_create_city_table = """CREATE TABLE IF NOT EXISTS city (
                                 id integer PRIMARY KEY,
-                                name text NOT NULL,
-                                priority integer,
-                                status_id integer NOT NULL,
-                                project_id integer NOT NULL,
-                                begin_date text NOT NULL,
-                                end_date text NOT NULL,
-                                FOREIGN KEY (project_id) REFERENCES projects (id)
+                                region_id integer NOT NULL,
+                                name text NOT NULL,                                
+                                FOREIGN KEY (region_id) REFERENCES region (id)
                             );"""
-def create_table(conn, create_table_sql):
+def exec_sql(conn, create_table_sql):
     """ create a table from the create_table_sql statement
     :param conn: Connection object
     :param create_table_sql: a CREATE TABLE statement
@@ -47,8 +41,10 @@ def create_connection(db):
         print(sqlite3.version)
 
         conn = sqlite3.connect(db)
-        create_table(conn, sql_create_projects_table)
-        create_table(conn, sql_create_tasks_table)        
+        exec_sql(conn, sql_create_region_table) 
+        # exec_sql(conn, "INSERT INTO region (name) VALUES ('Краснодарский');")
+        
+        exec_sql(conn, sql_create_city_table)        
 
     except Error as e:
         print(e)
