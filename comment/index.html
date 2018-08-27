@@ -3,21 +3,30 @@
 <head>
 <meta charset="utf-8">
 <title>Обработка данных форм</title>
+<link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body>
-    <form action="/cgi-bin/form.py">
-        <h2>Добавление комментария</h2>
+    <div class="container">        
+        <form class="form" action="/cgi-bin/form.py">
+            <h2 class="form__title">Добавление комментария</h2>
 
-        <input type="text" name="last-name" required placeholder="фамилия"><br>
-        <input type="text" name="name" required placeholder="имя"><br>
-        <input type="text" name="patronymic" placeholder="отчество"><br>
-        <input type="text" name="region" placeholder="регион"><br>
-        <input type="text" name="city" placeholder="город"><br>
-        <input type="tel" name="phone" placeholder="контактный телефон" pattern="[0-9]{3}[0-9]{7}">9999999999<br>
-        <input type="email" name="mail" placeholder="e-mail"><br>
-        <textarea cols="20" rows="5" name="comment" required placeholder="комментарий"></textarea><br>
-
-        <input type="submit">
-    </form>
+            <input class="inputs" type="text" name="lastName" required placeholder="фамилия"><br>
+            <input class="inputs" type="text" name="name" required placeholder="имя"><br>
+            <input class="inputs" type="text" name="patronymic" placeholder="отчество"><br>
+            <select onchange="getCity(this.value)" class="inputs"  name="region">
+                <option value="" disabled selected>Выберите регион</option>
+                <option value="1">Краснодарский край</option>
+                <option value="2">Ростовская область</option>
+                <option value="3">Ставропольский край</option>
+            </select><br>
+            <div id='el-city'></div>
+            <span class="desc">(код города) номер, пример: (918)1234567</span><br>
+            <input class="inputs" type="tel" name="phone" placeholder="контактный телефон" pattern="[(]{1}[0-9]{3}[)]{1}[0-9]{7}"><br>
+            <input class="inputs" type="email" name="mail" placeholder="e-mail"><br>
+            <textarea class="inputs" cols="20" rows="5" name="comment" required placeholder="комментарий"></textarea><br>
+            <input class="inputs" class="button" type="submit" value="Добавить">
+        </form>
+    </div>
+    <script type="text/javascript" src="../comon.js"></script>   
 </body>
 </html>

@@ -1,16 +1,27 @@
 #!/usr/bin/env python3
 import cgi
+import sqlite3 as lite
 
+db_file = "data.db"
 form = cgi.FieldStorage()
-lastname = form.getfirst("lastName", "не задано")
-name = form.getfirst("name", "не задано")
-patronymic = form.getfirst("patronymic", "не задано")
-region = form.getfirst("region", "не задано")
-city = form.getfirst("city", "не задано")
-phone = form.getfirst("phone", "не задано")
-mail = form.getfirst("mail", "не задано")
-comment = form.getfirst("comment", "не задано")
+lastname = form.getfirst("lastName", "empty")
+name = form.getfirst("name", "empty")
+patronymic = form.getfirst("patronymic", "empty")
+region = form.getfirst("region", "1")
+city = form.getfirst("city", "1")
+phone = form.getfirst("phone", "1")
+mail = form.getfirst("mail", "empty")
+comment = form.getfirst("comment", "empty")
 
+con = lite.connect(db_file)
+def inCommentDB(con):
+    with con:
+        cur = con.cursor()
+        sql = "INSERT INTO comments(region_id,city_id,name,comment) VALUES (:region,:city,:name,:comment)"
+        cur.execute(sql,{"region":region,"city":city,"name":name, "comment": comment })
+
+inCommentDB(con)
+con.close() 
 print("Content-type: text/html\n")
 print("""<!DOCTYPE HTML>
         <html>
