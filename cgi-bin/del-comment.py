@@ -6,14 +6,15 @@ import sqlite3 as lite
 import cgi
 
 form = cgi.FieldStorage()
-idregion = form.getfirst("idregion", "1")
+idcomment = form.getfirst("idcomment", "0")
 
 con = lite.connect(db_file)
 cursor = con.cursor()
 
 print("Content-type: text/plain\n")
+print("DELETE:",idcomment)
 
-sql = "SELECT c.name FROM city c WHERE c.region_id=:idreg"
-cursor.execute(sql,{"idreg": idregion})
-
-print (cursor.fetchall())
+sql = "DELETE FROM COMMENTS WHERE id=:idcomment"
+cursor.execute(sql,{"idcomment":idcomment})
+con.commit()
+con.close()

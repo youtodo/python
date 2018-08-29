@@ -30,7 +30,7 @@ print("""<!DOCTYPE HTML>
             <title>Обработка данных форм</title>
         </head>
         <body>""")
-
+print("<p><a class='button' href='/'>на главную</a></p>")
 print("<h2>Обработка данных форм!</h2>")
 print("<p>lastName: {}</p>".format(lastname))
 print("<p>name: {}</p>".format(name))
@@ -40,6 +40,7 @@ print("<p>city: {}</p>".format(city))
 print("<p>phone: {}</p>".format(phone))
 print("<p>mail: {}</p>".format(mail))
 print("<p>comment: {}</p>".format(comment))
+
 
 print("""</body>
         </html>""")

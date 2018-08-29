@@ -28,12 +28,8 @@ var getCity = function (val){
         });                
         select_city +="</select>";
         document.getElementById('el-city').innerHTML = select_city + '<br>';
-        
-        
-
-
-
       }    
     }
 
 }
+

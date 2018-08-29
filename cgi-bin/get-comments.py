@@ -6,14 +6,14 @@ import sqlite3 as lite
 import cgi
 
 form = cgi.FieldStorage()
-idregion = form.getfirst("idregion", "1")
+allcomments = form.getfirst("allcomments", "all")
 
 con = lite.connect(db_file)
 cursor = con.cursor()
 
 print("Content-type: text/plain\n")
 
-sql = "SELECT c.name FROM city c WHERE c.region_id=:idreg"
-cursor.execute(sql,{"idreg": idregion})
+sql = "SELECT com.id,r.name,c.name,com.name,com.comment FROM comments com left join region r on r.id=com.region_id left join city c on c.id=com.city_id"
+cursor.execute(sql)
 
 print (cursor.fetchall())

@@ -9,7 +9,10 @@ body {
 	display: inline-block;
 	position: relative;
 	border-radius: 10px;
+	min-width: 200px;
+	min-height: 200px;
 	/*width: 800px*/
+	padding: 20px;
 }
 .form {
 	padding: 2vh 5vh;
@@ -24,15 +27,16 @@ body {
 	width: 200px;
 	display: inline-block;
 }
+.inputs:active {
+	outline: none;
+
+}
 .button {
 	cursor: pointer;
 }
 .desc{
 	color: #a3a3a3
 }
-/*.main-links {
-	text-align: left;
-}*/
 .main-links {
 	padding: 50px
 }
@@ -42,7 +46,7 @@ body {
 	display: inline-block;
 	height: 60px
 }
-.main-links li a{
+.main-links li a, button{
 	position: relative;
 	display: inline-block;
 	padding: 10px;
@@ -54,4 +58,7 @@ body {
 }
 .error {
 	border: 1px solid #f00;
+}
+#table-comments {
+	text-align: left;
 }
